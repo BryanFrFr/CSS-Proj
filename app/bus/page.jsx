@@ -4,34 +4,26 @@ import useSWR from "swr";
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import BusData from './api/route.jsx';
 
 function FormTextExample() {
   const [busStopCode, setBusStopCode] = useState('');
-  const handleInputChange = (event) => {
+
+  function handleInputChange(event) {
     setBusStopCode(event.target.value);
-  };
+  }
   return (
     <>
-      <Form.Control type="text" placeholder="Enter Bus Stop Code" value={busStopCode} onChange={handleInputChange}/>
+      <Form.Control type="text" placeholder="Enter Bus Stop Code" value={busStopCode} onChange={handleInputChange} />
       <Button variant="outline-secondary">Get Bus Timings</Button>{' '}
     </>
   );
 }
 
-export default FormTextExample;
+ FormTextExample;
 
-// use vanilla fetch as fetcher
-// deserialize the fetched data as json
-const fetcher = (...args) =>
-  fetch(...args, {
-    headers: {
-      'AccountKey': '9LaRUMo3T7uWgUnDUFfJSw==', 
-    },
-  }).then((res) => res.json());
-
-function App() {
-  const BUS_ARRIVAL_API_URL = "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=44399";
-  const { data, error, isLoading } = useSWR(BUS_ARRIVAL_API_URL, fetcher);
+export default function App() {
+  const { data, error, isLoading } = useSWR(BusData);
 
   if (error) {
     return <h1>Error loading bus arrival data: {error.message}</h1>;
