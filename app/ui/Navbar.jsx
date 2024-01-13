@@ -9,9 +9,6 @@ export default function NavigationBar() {
       <Container>
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
-          <Nav.Link href="/fetch_ip">IP Information</Nav.Link>
-          <Nav.Link href="/timer">Timer</Nav.Link>
-          <Nav.Link href="/storage">Storage</Nav.Link>
           <Nav.Link href="/bus">Bus Arrival</Nav.Link>
         </Nav>
       </Container>
