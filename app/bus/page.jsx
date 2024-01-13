@@ -1,17 +1,35 @@
 "use client";
 import Spinner from "react-bootstrap/Spinner";
 import useSWR from "swr";
+import React, { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+
+function FormTextExample() {
+  const [busStopCode, setBusStopCode] = useState('');
+  const handleInputChange = (event) => {
+    setBusStopCode(event.target.value);
+  };
+  return (
+    <>
+      <Form.Control type="text" placeholder="Enter Bus Stop Code" value={busStopCode} onChange={handleInputChange}/>
+      <Button variant="outline-secondary">Get Bus Timings</Button>{' '}
+    </>
+  );
+}
+
+export default FormTextExample;
 
 // use vanilla fetch as fetcher
 // deserialize the fetched data as json
 const fetcher = (...args) =>
   fetch(...args, {
     headers: {
-      'AccountKey': '9LaRUMo3T7uWgUnDUFfJSw==', // Replace with your actual API key
+      'AccountKey': '9LaRUMo3T7uWgUnDUFfJSw==', 
     },
   }).then((res) => res.json());
 
-export default function App() {
+function App() {
   const BUS_ARRIVAL_API_URL = "http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=44399";
   const { data, error, isLoading } = useSWR(BUS_ARRIVAL_API_URL, fetcher);
 
