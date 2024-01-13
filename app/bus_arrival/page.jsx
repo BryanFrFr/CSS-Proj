@@ -7,7 +7,7 @@ import useSWR from "swr";
 const fetcher = (...args) =>
   fetch(...args, {
     headers: {
-      'AccountKey': '9LaRUMo3T7uWgUnDUFfJSw==', // Replace with your actual API key
+      'AccountKey': '9LaRUMo3T7uWgUnDUFfJSw==',
     },
   }).then((res) => res.json());
 
