@@ -31,5 +31,4 @@ FormTextExample;
 export default function App() {
   const { data, error, isLoading } = useSWR("/bus/api");
   console.log(data);
-
 }
