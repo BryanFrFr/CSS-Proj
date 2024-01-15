@@ -28,7 +28,28 @@ function FormTextExample() {
 
 FormTextExample;
 
+const fetcher = (...args) =>
+  fetch(...args).then((res) => res.json());
+
 export default function App() {
-  const { data, error, isLoading } = useSWR("/bus/api");
-  console.log(data);
+  const { data, error, isLoading } = useSWR("/bus/api", fetcher);
+
+  if (error) {
+    return <h1>Error loading bus arrival data: {error.message}</h1>;
+  }
+  if (isLoading) {
+    return (
+      <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner>
+    );
+  }
+
+  // render data
+  return (
+    <section>
+      <h1>Bus Arrival Timings</h1>
+      <h1>{data.BusStopCode}</h1>
+    </section>
+  );
 }
