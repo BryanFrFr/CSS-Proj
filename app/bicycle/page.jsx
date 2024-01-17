@@ -1,16 +1,14 @@
 'use client';
-import {FetchAPI} from './api/route.js';
+import parkingData from './api/route.js';
 import useSWR from 'swr';
 import {useState , useEffect} from 'react';
-const parkingData = FetchAPI();
 export default function App(){
-    /*const [data, FetchAPI] = useState("");
+    /*const [data, GET] = useState("");
     useEffect(()=>{
-        let data = FetchAPI();
+        let data = GET();
         return data;
     },[data]);*/
-    const {data,err,loading} = useSWR(parkingData)
     return(
-        <div>{parkingData}</div>
+        <div>{parkingData.RackCount}</div>
     );
 }
