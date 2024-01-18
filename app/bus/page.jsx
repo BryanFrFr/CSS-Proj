@@ -6,6 +6,8 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import styles from "./page.module.css";
+import Table from 'react-bootstrap/Table';
+import Image from 'next/image';
 
 function FormTextExample() {
   const [busStopCode, setBusStopCode] = useState('');
@@ -13,6 +15,7 @@ function FormTextExample() {
   function handleInputChange(event) {
     setBusStopCode(event.target.value);
   }
+
   return (
     <>
       <Form.Control
@@ -21,17 +24,14 @@ function FormTextExample() {
         placeholder="Enter Bus Stop Code"
         value={busStopCode}
         onChange={handleInputChange} />
-      <Button className={styles.button} variant="outline-secondary">Get Bus Timings</Button>{' '}
+      <Button className={styles.button} variant="outline-secondary" onClick={handleButtonClick}>Get Bus Timings</Button>
     </>
   );
 }
 
-FormTextExample;
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-const fetcher = (...args) =>
-  fetch(...args).then((res) => res.json());
-
-export default function App() {
+export default function handleButtonClick() {
   const { data, error, isLoading } = useSWR("/bus/api", fetcher);
 
   if (error) {
@@ -44,12 +44,41 @@ export default function App() {
       </Spinner>
     );
   }
-  
+
+  function CalculateBusArrivalTime(arrivalTime) {
+    const currentTime = new Date();
+    const timeToBusArrival = new Date(arrivalTime) - currentTime;
+    console.log(arrivalTime);
+    console.log(timeToBusArrival /60000);
+    return timeToBusArrival;
+  }
+
   // render data
   return (
-    <section>
-      <h1>Bus Arrival Timings</h1>
-      <h1>{data.BusStopCode}</h1>
-    </section>
+    <div>
+      <h1>Bus Arrival Information</h1>
+      <Table striped bordered hover>
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Next Arrival</th>
+            <th>Subsequent Arrival</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.Services.map(service => (
+            <React.Fragment key={service.ServiceNo}>
+              <tr>
+                <td>{service.ServiceNo}</td>
+                <td>
+                  {CalculateBusArrivalTime(service.NextBus.EstimatedArrival)}
+                </td>
+                <td>{service.NextBus2.EstimatedArrival}</td>
+              </tr>
+            </React.Fragment>
+          ))}
+        </tbody>
+      </Table>
+    </div>
   );
 }

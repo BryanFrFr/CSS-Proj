@@ -2,6 +2,7 @@
 // deserialize the fetched data as json
 
 export async function GET(request) {
+  //const slug = params.slug;
   const res = await fetch("http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=44399", {
     headers: {
       'Content-Type': 'application/json',
