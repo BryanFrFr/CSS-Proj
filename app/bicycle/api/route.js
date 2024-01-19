@@ -9,4 +9,3 @@
     const data = await res.json();
     return data; // Return the data directly
   }
->>>>>>> 38ddc0fc31a912f1ffac969574077bd121f00fc9
