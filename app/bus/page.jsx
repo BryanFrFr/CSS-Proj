@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import styles from "./page.module.css";
 import Table from 'react-bootstrap/Table';
 import Image from 'next/image';
+//import {FaWheelchair} from "react-icons/fa6";
 
 function FormTextExample() {
   const [busStopCode, setBusStopCode] = useState('');
@@ -32,7 +33,12 @@ function FormTextExample() {
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function handleButtonClick() {
-  const { data, error, isLoading } = useSWR("/bus/api", fetcher);
+  const { data, error, isLoading } = useSWR("/bus/api", fetcher, {
+    refreshInterval: 60000, 
+    revalidateIfStale: true,
+    //revalidateOnFocus: true,
+    //revalidateOnReconnect: true,  
+  });
 
   if (error) {
     return <h1>Error loading bus arrival data: {error.message}</h1>;
@@ -48,16 +54,15 @@ export default function handleButtonClick() {
   function CalculateBusArrivalTime(arrivalTime) {
     const currentTime = new Date();
     const timeToBusArrival = new Date(arrivalTime) - currentTime;
-    console.log(arrivalTime);
-    console.log(timeToBusArrival /60000);
-    return timeToBusArrival;
+    const arrivalTimeInMinutes = Math.floor(timeToBusArrival / 60000);
+    return arrivalTimeInMinutes <= 0 ? "Arriving" : arrivalTimeInMinutes;
   }
 
   // render data
   return (
     <div>
       <h1>Bus Arrival Information</h1>
-      <Table striped bordered hover>
+      <Table bordered className={styles.table}>
         <thead>
           <tr>
             <th>Service</th>
@@ -72,8 +77,9 @@ export default function handleButtonClick() {
                 <td>{service.ServiceNo}</td>
                 <td>
                   {CalculateBusArrivalTime(service.NextBus.EstimatedArrival)}
+                  <Image src="/wheelchair.png" alt="Wheelchair Icon" width={25} height={20}/>
                 </td>
-                <td>{service.NextBus2.EstimatedArrival}</td>
+                <td>{CalculateBusArrivalTime(service.NextBus2.EstimatedArrival)}</td>
               </tr>
             </React.Fragment>
           ))}
