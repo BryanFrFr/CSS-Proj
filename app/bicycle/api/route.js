@@ -5,8 +5,6 @@
         'AccountKey': 'gnT3uIc4Q4G151/hKaMiAg==',
       },
     });
-    console.log("hi");
-    console.log(res.status)
     const data = await res.json();
     return Response.json(data);
   }
