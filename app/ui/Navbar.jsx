@@ -10,6 +10,7 @@ export default function NavigationBar() {
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/bus">Bus Arrival</Nav.Link>
+          <Nav.Link href="/bicycle">Bicycle Parking</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
