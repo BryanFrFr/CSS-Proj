@@ -25,7 +25,12 @@ function FormTextExample() {
         placeholder="Enter Bus Stop Code"
         value={busStopCode}
         onChange={handleInputChange} />
-      <Button className={styles.button} variant="outline-secondary" onClick={handleButtonClick}>Get Bus Timings</Button>
+      <Button className={styles.button} variant="outline-secondary" onClick={() => {
+            /* 1. Navigate to the Details route with params */
+            props.navigation.navigate("/bus/api", {
+              otherParam: busStopCode,
+            });
+          }}>Get Bus Timings</Button>
     </>
   );
 }
@@ -33,6 +38,7 @@ function FormTextExample() {
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function handleButtonClick() {
+  //const busStopCode = 44399;
   const { data, error, isLoading } = useSWR("/bus/api", fetcher, {
     refreshInterval: 60000, 
     revalidateIfStale: true,
