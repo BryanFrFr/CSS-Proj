@@ -1,36 +1,19 @@
-import { GET } from './api/route.js';
+"use client";
+import useSWR from 'swr';
 import React from 'react';
+const fetcher = (...args) => fetch(...args).then ((res) => res.json());
 
-async function fetchData() {
-  try {
-    const res = await GET(); // Use the imported GET function
-    console.log(res); // Assuming you want to log the data
-    return res;
-  } catch (error) {
-    console.error('Error fetching data:', error);
+export default function App(){
+  const {data, isLoading, error} =  useSWR('/bicycle/api', fetcher); 
+  console.log(data.RackCount);
+  console.log("hi")
+  if (error) {
+    return <div>failed to load</div>
   }
-}
-
-const data = GET();
-export default function App() {
-   // Call the fetchData function
-  
-  return (
-    <div>
-    <h1>Bicycle Parking Locations</h1>
-    <ul>
-      {data.value.map((location, index) => (
-        <li key={index}>
-          <p>Description: {location.Description}</p>
-          <p>Latitude: {location.Latitude}</p>
-          <p>Longitude: {location.Longitude}</p>
-          <p>Rack Type: {location.RackType}</p>
-          <p>Rack Count: {location.RackCount}</p>
-          <p>Shelter Indicator: {location.ShelterIndicator}</p>
-          <hr />
-        </li>
-      ))}
-    </ul>
-  </div>
+  if (isLoading) {
+    return <div>loading...</div>
+  }
+  return(
+    <div>hello</div>
   );
 }
