@@ -6,14 +6,13 @@ const fetcher = (...args) => fetch(...args).then ((res) => res.json());
 
 export default function App(){
   const {data, isLoading, error} =  useSWR('/MRT/api', fetcher); 
-  console.log(data);
   if (error) {
-    return <div>failed to load</div>
+    return <h1>Failed to load</h1>
   }
   if (isLoading) {
-    return <div>loading...</div>
+    return <h1>Loading...</h1>
   }
   return(
-    <div>{data.value.Stations}</div>
+    <div>help{data.value[0].Station}</div>
   );
 }
