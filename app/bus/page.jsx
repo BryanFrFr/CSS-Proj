@@ -5,7 +5,6 @@ import useSWR from "swr";
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import BusData from './api/route.jsx';
 import styles from "./page.module.css";
 
 function FormTextExample() {
@@ -16,25 +15,24 @@ function FormTextExample() {
   }
   return (
     <>
-      <Container>
-        <Form.Control
-          className={styles.input}
-          type="text"
-          placeholder="Enter Bus Stop Code"
-          value={busStopCode}
-          onChange={handleInputChange} />
-      </Container>
-      <Container>
-        <Button className={styles.button} variant="outline-secondary">Get Bus Timings</Button>{' '}
-      </Container>
+      <Form.Control
+        className={styles.input}
+        type="text"
+        placeholder="Enter Bus Stop Code"
+        value={busStopCode}
+        onChange={handleInputChange} />
+      <Button className={styles.button} variant="outline-secondary">Get Bus Timings</Button>{' '}
     </>
   );
 }
 
-export default FormTextExample;
+FormTextExample;
 
-function App() {
-  const { data, error, isLoading } = useSWR(BusData);
+const fetcher = (...args) =>
+  fetch(...args).then((res) => res.json());
+
+export default function App() {
+  const { data, error, isLoading } = useSWR("/bus/api", fetcher);
 
   if (error) {
     return <h1>Error loading bus arrival data: {error.message}</h1>;
@@ -46,7 +44,7 @@ function App() {
       </Spinner>
     );
   }
-
+  
   // render data
   return (
     <section>
