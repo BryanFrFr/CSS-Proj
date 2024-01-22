@@ -11,6 +11,7 @@ export default function NavigationBar() {
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/bus">Bus Arrival</Nav.Link>
           <Nav.Link href="/bicycle">Bicycle Parking</Nav.Link>
+          <Nav.Link href="/MRT">MRT Crowd</Nav.Link>
         </Nav>
       </Container>
     </Navbar>
