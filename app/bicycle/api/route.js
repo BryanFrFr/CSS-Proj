@@ -5,7 +5,7 @@
         'AccountKey': 'gnT3uIc4Q4G151/hKaMiAg==',
       },
     });
-  
-    const data = await response.json();
-    return data;
+
+    const data = await res.json();
+    return Response.json(data);
   }
