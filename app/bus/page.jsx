@@ -92,13 +92,11 @@ export default function BusTimings() {
                           {CalculateBusArrivalTime(service.NextBus.EstimatedArrival)}
                           {DisplayBusType(service.NextBus.Type)}
                           <Image src="/wheelchair.svg" alt="Wheelchair Icon" width={25} height={20} />
-                          
                         </td>
                         <td>
                           {CalculateBusArrivalTime(service.NextBus2.EstimatedArrival)}
                           {DisplayBusType(service.NextBus.Type, styles.icon)}
                           <Image src="/wheelchair.svg" alt="Wheelchair Icon" width={25} height={20} />
-                          
                         </td>
                       </tr>
                     </React.Fragment>
