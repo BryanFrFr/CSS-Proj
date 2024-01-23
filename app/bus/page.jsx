@@ -14,7 +14,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function BusTimings() {
   const [busStopCode, setBusStopCode] = useState('');
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-
+  
   const { data, error, isLoading } = useSWR(
     isButtonClicked ? `/bus/api?busStopCode=${busStopCode}` : null,
     fetcher,
@@ -27,7 +27,11 @@ export default function BusTimings() {
   );
 
   const handleButtonClick = () => {
-    setIsButtonClicked(true);
+    if (isButtonClicked === true) {
+      setIsButtonClicked(false);
+    } else if (isButtonClicked === false && busStopCode.toString().length === 5) {
+      setIsButtonClicked(true);
+    }
   };
 
   function CalculateBusArrivalTime(arrivalTime) {
@@ -63,7 +67,7 @@ export default function BusTimings() {
       <Button className={styles.button} variant="outline-secondary" onClick={handleButtonClick}>
         Get Bus Timings
       </Button>
-    
+
       {isButtonClicked && (
         <>
           {isLoading ? (
@@ -72,7 +76,7 @@ export default function BusTimings() {
             </Spinner>
           ) : error ? (
             <h1>Error loading bus arrival data: {error.message}</h1>
-          ) : (
+          ) : data.Services != undefined && data.Services.service != null ? (
             <div>
               <h1>Bus Arrival Information</h1>
               <Table bordered className={styles.table} style={{ width: '100%' }}>
@@ -102,8 +106,11 @@ export default function BusTimings() {
                     </React.Fragment>
                   ))}
                 </tbody>
+                {handleButtonClick}
               </Table>
             </div>
+          ) : (
+            <p>Invalid Bus Stop Code</p>
           )}
         </>
       )}
