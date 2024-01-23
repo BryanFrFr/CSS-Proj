@@ -1,6 +1,5 @@
 // use vanilla fetch as fetcher
 // deserialize the fetched data as json
-
 export async function GET(request) {
   const { searchParams } = new URL(request.url)
   const busStopCode = searchParams.get('busStopCode');
