@@ -2,7 +2,9 @@
 // deserialize the fetched data as json
 
 export async function GET(request) {
-  const busStopCode = request.query.get('busStopCode');
+  const { searchParams } = new URL(request.url)
+  const busStopCode = searchParams.get('busStopCode');
+
   const res = await fetch(`http://datamall2.mytransport.sg/ltaodataservice/BusArrivalv2?BusStopCode=${busStopCode}`, {
     headers: {
       'cache': 'no-store',
