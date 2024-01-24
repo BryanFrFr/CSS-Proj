@@ -1,8 +1,8 @@
 "use client";
 import useSWR from 'swr';
-import React from 'react';
+import React ,{useState} from 'react';
 const fetcher = (...args) => fetch(...args).then ((res) => res.json());
-export function latLong(){
+export default function App(){
   if ("geolocation" in navigator) {
     // Prompt user for location permissions
     navigator.geolocation.watchPosition(
@@ -11,7 +11,7 @@ export function latLong(){
         // Get the user's latitude and longitude
         const lat = position.coords.latitude;
         const long = position.coords.longitude;
-        return (lat, long);
+        setPosition({lat,long});
         // Returns user position
       },
       // Function for errors
@@ -24,10 +24,11 @@ export function latLong(){
     // Executes if Geolocation is not supported by the browser
     console.error("Geolocation is not supported by this browser.");
   }
-}
-export default function App(){
-  const {data, isLoading, error} =  useSWR('/bicycle/parkingApi', fetcher);
-  
+  const [position, setPosition] = useState({lat: 0, long: 0})
+  let lat = position.lat;
+  let long = position.long;
+  console.log("lat:",lat,"long:",long)
+  const {data, isLoading, error} =  useSWR(`/bicycle/parkingApi?Lat=${lat}&Long=${long}`, fetcher);
   if (error) {
     return <div>failed to load</div>
   }
@@ -35,8 +36,9 @@ export default function App(){
     return <div>loading...</div>
   }
   else {
+  console.log(data);
   return(
-    <div>{data.value[0].RackCount}</div>
+    <div>hello</div>
   );
   }
 }
