@@ -1,5 +1,8 @@
-  export async function GET() {
-    const res = await fetch("http://datamall2.mytransport.sg/ltaodataservice/BicycleParkingv2?Lat=1.364897&Long=103.766094&Dist=100", {
+ export async function GET(req) {
+  const { searchParams } = new URL(req.url)
+  const lat = searchParams.get('lat');
+  const long = searchParams.get('long');
+    const res = await fetch(`http://datamall2.mytransport.sg/ltaodataservice/BicycleParkingv2?Lat=${lat}&Long=${long}&Dist=1`, {
       headers: {
         'Content-Type': 'application/json',
         'AccountKey': 'gnT3uIc4Q4G151/hKaMiAg==',
