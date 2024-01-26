@@ -12,7 +12,7 @@ export async function GET(request) {
       'Content-Type': 'application/json',
       'AccountKey': '9LaRUMo3T7uWgUnDUFfJSw==',
     },
-    });
+  });
 
   const data = await res.json();
 
