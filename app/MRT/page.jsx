@@ -1,5 +1,6 @@
 "use client";
 import useSWR from 'swr';
+import React from 'react';
 const fetcher = (...args) => fetch(...args).then ((res) => res.json());
 
 
@@ -12,8 +13,6 @@ export default function App(){
     return <h1>Loading...</h1>
   }
   return(
-    <div>
-      {MyComponent()}
-      {data.value[0].Station}</div>
+    <div>{data.value[0].Station}</div>
   );
 }
