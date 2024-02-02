@@ -13,6 +13,6 @@ export default function App(){
     return <h1>Loading...</h1>
   }
   return(
-    <div>help{data.value[0].Station}</div>
+    <div>{data.value[0].Station}</div>
   );
 }
