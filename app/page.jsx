@@ -3,22 +3,27 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
 
 export default function About() {
   return (
     <div>
-      <Card border='light' style={{textAlign: 'center', fontSize: '40px', marginBottom: '20px'}} >
-        <Card.Body>Singapore's Transportation Scene</Card.Body>
-      </Card>
-      
       <div>
-        <Dropdown className="d-flex justify-content-center">
-          <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="lg" 
-          style={{ width: '1200px', textAlign: 'left', marginBottom: '20px', padding: '12px', fontSize: '18px' }}>
+        <div className="image-container" style={{ display: 'flex', maxWidth: '100%', overflowX: 'auto' }}>
+          <Image src="/placeholder.jpg" width={1000} height={300} />
+          <Image src="/mrt.jpg" width={1000} height={300} />
+        </div>
+        <h1 className={styles.header}>Singapore's Transportation Scene</h1>
+      </div>
+
+      <div style={{ marginTop: '50px' }}>
+        <Dropdown className="d-flex justify-content-center" >
+          <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="lg"
+            style={{ width: '1200px', textAlign: 'left', marginBottom: '20px', padding: '12px', fontSize: '18px' }}>
             Our Rail System
           </Dropdown.Toggle>
 
-          <Dropdown.Menu style={{ width: '1200px', padding: '12px'}}>
+          <Dropdown.Menu style={{ width: '1200px', padding: '12px' }}>
             <p className={styles.text}>
               The vision for a rail system started as early as 1967, just two years after independence,
               but only picked up steam in the late 1970s. <br />
@@ -30,16 +35,17 @@ export default function About() {
               on the matter preferred an expansion of the bus network. Ultimately, the rail-based option prevailed,
               and the construction of Singapore’s first rail line began in 1983.
             </p>
+            <Image src="/mrt timeline.jpg" height={2920} width={1000} style={{ display: 'block', margin: 'auto' }} />
           </Dropdown.Menu>
         </Dropdown>
 
         <Dropdown className="d-flex justify-content-center">
-          <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="lg" 
-          style={{ width: '1200px', textAlign: 'left', marginBottom: "20px", padding: '12px', fontSize: '18px' }}>
+          <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="lg"
+            style={{ width: '1200px', textAlign: 'left', marginBottom: "20px", padding: '12px', fontSize: '18px' }}>
             Developing Roads and Managing Traffic
           </Dropdown.Toggle>
 
-          <Dropdown.Menu style={{ width: '1200px', padding: '12px'}}>
+          <Dropdown.Menu style={{ width: '1200px', padding: '12px' }}>
             <p className={styles.text}>
               Developing and regulating Singapore’s land transport network is a balance between improving road capacity
               and maintaining a sustainable vehicle population while managing traffic flow. Development of bus and rail
@@ -50,19 +56,18 @@ export default function About() {
               <br />
               These are some of the key milestones in the development of our road network and the various measures we
               implemented over the years to manage road usage: <br />
-
-              <Image src="/evolution road networks.jpg" height={1460} width={500}/>
             </p>
+            <Image src="/evolution road networks.jpg" height={2920} width={1000} style={{ display: 'block', margin: 'auto' }} />
           </Dropdown.Menu>
         </Dropdown>
 
         <Dropdown className="d-flex justify-content-center">
-          <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="lg" className={styles.toggle}
-          style={{ width: '1200px', textAlign: 'left', marginBottom: "20px", padding: '12px', fontSize: '18px'}}>
+          <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="lg"
+            style={{ width: '1200px', textAlign: 'left', marginBottom: "20px", padding: '12px', fontSize: '18px' }}>
             An Intergrated Public Transport System
           </Dropdown.Toggle>
 
-          <Dropdown.Menu style={{ width: '1200px', padding: '12px'}}>
+          <Dropdown.Menu style={{ width: '1200px', padding: '12px' }}>
             <p className={styles.text}>
               With the rail system bringing added connectivity to the bus and road network in the 1980s, Singapore’s
               public transport system moved towards a more integrated model.  <br />

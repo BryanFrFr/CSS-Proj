@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 
 export default function NavigationBar() {
   return (
-    <Navbar bg="dark" data-bs-theme="dark" style={{ marginBottom: "15px" }}>
+    <Navbar bg="dark" data-bs-theme="dark" style={{ marginBottom: "15px", height: "65px"}}>
       <Container>
         <Nav className="me-auto">
           <Nav.Link href="/">Home</Nav.Link>

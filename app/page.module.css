@@ -1,9 +1,9 @@
 .header {
   position: absolute;
-  top: 20%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: black; /* Adjust text color for visibility against the background */
+  color: white; /* Adjust text color for visibility against the background */
   text-align: center;
   z-index: 1; /* Ensure text is above the background image */
 }
