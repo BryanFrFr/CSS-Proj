@@ -10,7 +10,7 @@ export default function About() {
     <div>
       <div>
         <div className="image-container" style={{ display: 'flex', maxWidth: '100%', overflowX: 'auto' }}>
-          <Image src="/placeholder.jpg" width={1000} height={300} />
+          <Image src="/bus.webp" width={1000} height={300} objectFit="cover" />
           <Image src="/mrt.jpg" width={1000} height={300} />
         </div>
         <h1 className={styles.header}>Singapore's Transportation Scene</h1>
