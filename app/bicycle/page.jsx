@@ -1,4 +1,5 @@
 "use client";
+import styles from './page.module.css';
 import useSWR from 'swr';
 import React ,{useState} from 'react';
 const fetcher = (...args) => fetch(...args).then ((res) => res.json());
@@ -8,6 +9,12 @@ export default function App(){
     "textAlign" : "center",
     "padding": "10px",
  };
+ var headerStyle = {
+  "border": "1px solid black",
+  "textAlign" : "center",
+  "padding": "10px",
+  "background": "green"
+};
   const [position, setPosition] = useState({lat: 0, long: 0});
   if ("geolocation" in navigator) {
     // Prompt user for location permissions
@@ -43,17 +50,10 @@ export default function App(){
   else {
   console.log(data);
   
-  /*for ( let i = 0; i < data.value.length; i ++){
-    if (data.value[i].ShelterIndicator === "N"){
-      data.value[i].ShelterIndicator = "No";
-    }else{
-      data.value[i].ShelterIndicator = "Yes";
-    }
-  }*/
   return(
     <div>
- <table style = {tableStyle}>
-        <tr><th style={tableStyle}>Description</th><th style={tableStyle}>Shelter (Y/N)</th><th style={tableStyle}>Number of Racks</th><th >Type of Rack</th></tr>
+ <table className = "LeTable" style = {tableStyle}>
+        <tr><th style={headerStyle}>Description</th><th style={headerStyle}>Shelter (Y/N)</th><th style={headerStyle}>Number of Racks</th><th style={headerStyle}>Type of Rack</th></tr>
       {data.value.map((val, key) => {
                     return (
                         <tr style={tableStyle} key={key}>
