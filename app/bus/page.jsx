@@ -11,6 +11,7 @@ import { Row } from 'react-bootstrap';
 import Stack from 'react-bootstrap/Stack';
 import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
@@ -83,7 +84,7 @@ export default function BusTimings() {
 
   return (
     <div>
-      <Stack gap={4} style={{ marginTop: "20px"}}>
+      <Stack gap={4} style={{ marginTop: "20px" }}>
         <Row className="d-flex justify-content-center">
           <Form.Control
             className={styles.input}
@@ -103,14 +104,34 @@ export default function BusTimings() {
       {isButtonClicked && (
         <>
           {isLoading ? (
-            <Spinner animation="border" role="status" className="d-flex justify-content-center">
+            <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
           ) : error ? (
             <h1>Error loading bus arrival data: {error.message}</h1>
           ) : (data.Services !== undefined && data.BusStopCode.length === 5 && data.Services.length > 0) ? (
+            console.log(data),
             <div>
-              <h1>Bus Arrival Information</h1>
+              <Row>
+                <Col className="d-flex justify-content-center">
+                  <Image src="/wheelchair.svg" alt="Wheelchair Icon" width={25} height={20} />
+                </Col>
+                <Col className="d-flex justify-content-center">
+                  <div style={{ backgroundColor: '#008000', height: '10px', width: '10px', borderRadius: '50px' }}></div>
+                </Col>
+                <Col className="d-flex justify-content-center">
+                  <div style={{ backgroundColor: '#f6c226', height: '10px', width: '10px', borderRadius: '50px' }}></div>
+                </Col>
+                <Col className="d-flex justify-content-center">
+                  <div style={{ backgroundColor: '#ff0000', height: '10px', width: '10px', borderRadius: '50px' }}></div>
+                </Col>
+              </Row>
+              <Row style={{ marginBottom: '20px' }}>
+                <Col className="d-flex justify-content-center">Wheelchair Accessible</Col>
+                <Col className="d-flex justify-content-center">Seats Available</Col>
+                <Col className="d-flex justify-content-center">Standing Available</Col>
+                <Col className="d-flex justify-content-center">Limited Standing</Col>
+              </Row>
               <Table bordered>
                 <thead>
                   <tr style={{ textAlign: 'center' }}>
