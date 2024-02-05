@@ -1,8 +1,21 @@
 "use client";
 import useSWR from 'swr';
-import React ,{useState} from 'react';
+import React,{useState} from 'react';
+import Table from 'react-bootstrap/Table';
 const fetcher = (...args) => fetch(...args).then ((res) => res.json());
 export default function App(){
+  var tableStyle = {
+    "border": "1px solid black",
+    "textAlign" : "center",
+    "padding": "10px",
+ };
+ var headerStyle = {
+  "border": "1px solid black",
+  "textAlign" : "center",
+  "padding": "10px",
+  "background": "green"
+};
+  const [position, setPosition] = useState({lat: 0, long: 0});
   if ("geolocation" in navigator) {
     // Prompt user for location permissions
     navigator.geolocation.watchPosition(
@@ -24,7 +37,6 @@ export default function App(){
     // Executes if Geolocation is not supported by the browser
     console.error("Geolocation is not supported by this browser.");
   }
-  const [position, setPosition] = useState({lat: 0, long: 0})
   let lat = position.lat;
   let long = position.long;
   console.log("lat:",lat,"long:",long)
@@ -37,8 +49,23 @@ export default function App(){
   }
   else {
   console.log(data);
+  
   return(
-    <div>hello</div>
+    <div>
+ <Table className = "LeTable" style = {tableStyle}>
+        <tr><th style={headerStyle}>Description</th><th style={headerStyle}>Shelter (Y/N)</th><th style={headerStyle}>Number of Racks</th><th style={headerStyle}>Type of Rack</th></tr>
+      {data.value.map((val, key) => {
+                    return (
+                        <tr style={tableStyle} key={key}>
+                            <td style={tableStyle}>{val.Description}</td>
+                            <td style={tableStyle}>{val.ShelterIndicator}</td>
+                            <td style={tableStyle}>{val.RackCount}</td>
+                            <td style={tableStyle}>{val.RackType}</td>
+                        </tr>
+                    )
+                })}
+      </Table>
+      </div>
   );
   }
 }

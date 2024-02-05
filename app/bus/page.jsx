@@ -148,7 +148,7 @@ export default function BusTimings() {
 
                         <td>
                           {service.NextBus.EstimatedArrival !== '' ? (
-                            <Container style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <Container style={{ display: 'flex', alignItems: 'center'}}>
                               <div style={{ marginRight: '25px', width: '10px' }}>
                                 {service.NextBus.EstimatedArrival != null ?
                                   CalculateBusArrivalTime(service.NextBus.EstimatedArrival) : "None"}
