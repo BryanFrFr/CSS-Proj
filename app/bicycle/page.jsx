@@ -1,5 +1,4 @@
 "use client";
-import styles from './page.module.css';
 import useSWR from 'swr';
 import React,{useState} from 'react';
 import Table from 'react-bootstrap/Table';
