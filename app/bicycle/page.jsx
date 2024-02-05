@@ -1,7 +1,8 @@
 "use client";
 import styles from './page.module.css';
 import useSWR from 'swr';
-import React ,{useState} from 'react';
+import React,{useState} from 'react';
+import Table from 'react-bootstrap/Table';
 const fetcher = (...args) => fetch(...args).then ((res) => res.json());
 export default function App(){
   var tableStyle = {
@@ -52,7 +53,7 @@ export default function App(){
   
   return(
     <div>
- <table className = "LeTable" style = {tableStyle}>
+ <Table className = "LeTable" style = {tableStyle}>
         <tr><th style={headerStyle}>Description</th><th style={headerStyle}>Shelter (Y/N)</th><th style={headerStyle}>Number of Racks</th><th style={headerStyle}>Type of Rack</th></tr>
       {data.value.map((val, key) => {
                     return (
@@ -64,7 +65,7 @@ export default function App(){
                         </tr>
                     )
                 })}
-      </table>
+      </Table>
       </div>
   );
   }
