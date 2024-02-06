@@ -1,11 +1,50 @@
 .header {
+  display: flex;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.title {
   position: absolute;
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white; /* Adjust text color for visibility against the background */
-  background-color: rgba(0, 0, 0, 0.4); /* Adjust the background color and opacity */
+  color: white;
+  /* Adjust text color for visibility against the background */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Adjust the background color and opacity */
   padding: 10px;
   text-align: center;
-  z-index: 1; /* Ensure text is above the background image */
+  z-index: 1;
+  /* Ensure text is above the background image */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.accordion {
+  margin-top: 50px;
+  width: 1200px;
+}
+
+.accheader {
+  width: 1200px;
+  padding: 10px;
+  font-size: 18px;
+}
+
+.image {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.text {
+  width: 1200px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 15px;
+  padding-bottom: 20px;
 }

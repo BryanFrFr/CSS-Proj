@@ -1,51 +1,42 @@
 "use client";
 import Image from 'next/image';
 import styles from './page.module.css';
-import Dropdown from 'react-bootstrap/Dropdown';
+import Accordion from 'react-bootstrap/Accordion';
 import Container from 'react-bootstrap/Container';
 
 export default function About() {
   return (
     <div>
       <div>
-        <Container style={{ display: 'flex', maxWidth: '100%', overflowX: 'auto' }}>
+        <Container className={styles.header}>
           <Image src="/cycling.png" width={1000} height={320} />
           <Image src="/mrt.jpg" width={1000} height={320} />
         </Container>
-        <h1 className={styles.header}>Singapore's Transportation Scene</h1>
+        <h1 className={styles.title}>Singapore's Transportation Scene</h1>
       </div>
 
-      <div style={{ marginTop: '50px' }}>
-        <Dropdown className="d-flex justify-content-center" >
-          <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="lg"
-            style={{ width: '1200px', textAlign: 'left', marginBottom: '20px', padding: '12px', fontSize: '18px' }}>
-            Our Rail System
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu style={{ width: '1200px', padding: '12px' }}>
-            <p style={{ margin: '20px'}}>
-              The vision for a rail system started as early as 1967, just two years after independence,
-              but only picked up steam in the late 1970s. <br />
+      <Container className={styles.container}>
+        <Accordion className={styles.accordion}>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header className={styles.accheader}>Our Rail System</Accordion.Header>
+            <Accordion.Body className={styles.text}>
+              Developing and regulating Singapore’s land transport network is a balance between improving road capacity
+              and maintaining a sustainable vehicle population while managing traffic flow. Development of bus and rail
+              services has been matched by new infrastructure and policies to manage growing vehicle ownership. <br />
               <br />
-              In 1981, a Comprehensive Traffic Study concluded that a mass transit rail system would best
-              complement the existing bus network. This was met with opposition, with high cost being a main factor.
-              Lively discussions in parliament, the press and among the public, known as the ‘Great MRT Debate’,
-              culminated in a rare televised discussion. Even Harvard University specialists brought in to consult
-              on the matter preferred an expansion of the bus network. Ultimately, the rail-based option prevailed,
-              and the construction of Singapore’s first rail line began in 1983.
-            </p>
-            <Image src="/mrt timeline.jpg" height={2920} width={1000} style={{ display: 'block', margin: 'auto' }} />
-          </Dropdown.Menu>
-        </Dropdown>
+              In 1967, the government commissioned a new land use and transport plan, later known as the Concept Plan,
+              that would guide the location of the first expressways in Singapore. <br />
+              <br />
+              These are some of the key milestones in the development of our road network and the various measures we
+              implemented over the years to manage road usage:
+              <br />
+              <Image src="/evolution road networks.jpg" height={2920} width={1000} className={styles.image} />
+            </Accordion.Body>
+          </Accordion.Item>
 
-        <Dropdown className="d-flex justify-content-center">
-          <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="lg"
-            style={{ width: '1200px', textAlign: 'left', marginBottom: "20px", padding: '12px', fontSize: '18px' }}>
-            Developing Roads and Managing Traffic
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu style={{ width: '1200px', padding: '12px' }}>
-            <p className={styles.text}>
+          <Accordion.Item eventKey="1">
+            <Accordion.Header className={styles.accheader}>Developing Roads and Managing Traffic</Accordion.Header>
+            <Accordion.Body className={styles.text}>
               Developing and regulating Singapore’s land transport network is a balance between improving road capacity
               and maintaining a sustainable vehicle population while managing traffic flow. Development of bus and rail
               services has been matched by new infrastructure and policies to manage growing vehicle ownership. <br />
@@ -55,19 +46,13 @@ export default function About() {
               <br />
               These are some of the key milestones in the development of our road network and the various measures we
               implemented over the years to manage road usage: <br />
-            </p>
-            <Image src="/evolution road networks.jpg" height={2920} width={1000} style={{ display: 'block', margin: 'auto' }} />
-          </Dropdown.Menu>
-        </Dropdown>
+              <Image src="/evolution road networks.jpg" height={2920} width={1000} className={styles.image} />
+            </Accordion.Body>
+          </Accordion.Item>
 
-        <Dropdown className="d-flex justify-content-center">
-          <Dropdown.Toggle variant="secondary" id="dropdown-basic" size="lg"
-            style={{ width: '1200px', textAlign: 'left', marginBottom: "20px", padding: '12px', fontSize: '18px' }}>
-            An Intergrated Public Transport System
-          </Dropdown.Toggle>
-
-          <Dropdown.Menu style={{ width: '1200px', padding: '12px' }}>
-            <p className={styles.text}>
+          <Accordion.Item eventKey="2">
+            <Accordion.Header className={styles.accheader}>An Intergrated Public Transport System</Accordion.Header>
+            <Accordion.Body className={styles.text}>
               With the rail system bringing added connectivity to the bus and road network in the 1980s, Singapore’s
               public transport system moved towards a more integrated model.  <br />
               <br />
@@ -94,10 +79,10 @@ export default function About() {
               times and ensuring that more train stations were closer to homes. The aim of the Walk Cycle Ride initiative was
               to make access to transport hubs more seamless. The Land Transport Master Plan 2040 (LTMP 2040) will set the
               vision for 2040 and the future of land transport in Singapore.  <br />
-            </p>
-          </Dropdown.Menu>
-        </Dropdown>
-      </div>
-    </div>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+      </Container >
+    </div >
   );
 }
