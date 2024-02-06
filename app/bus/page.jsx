@@ -34,16 +34,10 @@ export default function BusTimings() {
   };
 
   function CalculateBusArrivalTime(arrivalTime) {
-    if (arrivalTime === "") {
-      return (
-        "-"
-      )
-    } else {
-      const currentTime = new Date();
-      const timeToBusArrival = new Date(arrivalTime) - currentTime;
-      const arrivalTimeInMinutes = Math.floor(timeToBusArrival / 60000);
-      return arrivalTimeInMinutes <= 0 ? 'Arr' : arrivalTimeInMinutes;
-    }
+    const currentTime = new Date();
+    const timeToBusArrival = new Date(arrivalTime) - currentTime;
+    const arrivalTimeInMinutes = Math.floor(timeToBusArrival / 60000);
+    return arrivalTimeInMinutes <= 0 ? 'Arr' : arrivalTimeInMinutes;
   }
 
   function DisplayBusType(BusType) {
@@ -148,13 +142,13 @@ export default function BusTimings() {
 
                         <td>
                           {service.NextBus.EstimatedArrival !== '' ? (
-                            <Container style={{ display: 'flex', alignItems: 'center'}}>
+                            <Container style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                               <div style={{ marginRight: '25px', width: '10px' }}>
                                 {service.NextBus.EstimatedArrival != null ?
                                   CalculateBusArrivalTime(service.NextBus.EstimatedArrival) : "None"}
                               </div>
-                              <div style={{ marginRight: '25px', width: '10px', textAlign: 'left' }}>{DisplayBusType(service.NextBus.Type)}</div>
-                              <div style={{ marginRight: '8px', width: '10px' }}>{DisplayBusLoad(service.NextBus.Load)}</div>
+                              <div style={{ marginRight: '25px', width: '10px'}}>{DisplayBusType(service.NextBus.Type)}</div>
+                              <div style={{ marginRight: '8px', width: '10px'}}>{DisplayBusLoad(service.NextBus.Load)}</div>
                               <div style={{ margin: '5px', width: '10px' }}>{DisplayBusAccessibility(service.NextBus.Feature)}</div>
                             </Container>
                           ) : (
@@ -169,8 +163,8 @@ export default function BusTimings() {
                                 {service.NextBus.EstimatedArrival != null ?
                                   CalculateBusArrivalTime(service.NextBus2.EstimatedArrival) : "None"}
                               </div>
-                              <div style={{ marginRight: '25px', width: '10px', textAlign: 'left' }}>{DisplayBusType(service.NextBus2.Type)}</div>
-                              <div style={{ marginRight: '8px', width: '10px' }}>{DisplayBusLoad(service.NextBus2.Load)}</div>
+                              <div style={{ marginRight: '25px', width: '10px'}}>{DisplayBusType(service.NextBus2.Type)}</div>
+                              <div style={{ marginRight: '8px', width: '10px'}}>{DisplayBusLoad(service.NextBus2.Load)}</div>
                               <div style={{ margin: '5px', width: '10px' }}>{DisplayBusAccessibility(service.NextBus2.Feature)}</div>
                             </Container>
                           ) : (
