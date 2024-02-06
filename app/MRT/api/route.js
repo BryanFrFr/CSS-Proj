@@ -4,7 +4,10 @@ export async function GET(request) {
     const res = await fetch(`http://datamall2.mytransport.sg/ltaodataservice/PCDRealTime?TrainLine=${MRTLine}`, {
       headers: {
         'Content-Type': 'application/json',
-        'AccountKey': 'qKpobOWvRHywqHj9eT/UvQ==',
+        
+        //qKpobOWvRHywqHj9eT/UvQ==
+        
+        'AccountKey': 'gnT3uIc4Q4G151/hKaMiAg==',
       },
     });
     const data = await res.json();
