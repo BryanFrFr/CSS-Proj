@@ -28,7 +28,7 @@ export default function BusTimings() {
   );
 
   function handleButtonClick() {
-    setIsButtonClicked(prev => !prev)
+    setIsButtonClicked(true)
   };
 
   function CalculateBusArrivalTime(arrivalTime) {
@@ -74,6 +74,14 @@ export default function BusTimings() {
     }
   }
 
+  function handleBusInput(event) {
+    setBusStopCode(event.target.value)
+
+    if (busStopCode.length !== 5) {
+      setIsButtonClicked(false)
+    }
+  }
+
   return (
     <div>
       <Stack gap={4} style={{ marginTop: "20px" }}>
@@ -83,7 +91,7 @@ export default function BusTimings() {
             type="text"
             placeholder="Enter Bus Stop Code"
             value={busStopCode}
-            onChange={(event) => setBusStopCode(event.target.value)}
+            onChange={handleBusInput}
           />
         </Row>
         <Row className="d-flex justify-content-center">
@@ -96,7 +104,7 @@ export default function BusTimings() {
       {isButtonClicked && (
         <>
           {isLoading ? (
-            <div style={{ display: 'flex', justifyContent: 'center'}}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
               </Spinner>
@@ -106,7 +114,7 @@ export default function BusTimings() {
           ) : (data.Services !== undefined && data.BusStopCode.length === 5 && data.Services.length > 0) ? (
             console.log(data),
             <div>
-              <Row style={{ marginTop: '50px'}}>
+              <Row style={{ marginTop: '50px' }}>
                 <Col className="d-flex justify-content-center">
                   <Image src="/wheelchair.svg" alt="Wheelchair Icon" width={25} height={20} />
                 </Col>
@@ -139,13 +147,12 @@ export default function BusTimings() {
                     <React.Fragment key={service.ServiceNo}>
                       <tr>
                         <td style={{ textAlign: 'center' }}>{service.ServiceNo}</td>
-
                         <td>
                           {service.NextBus.EstimatedArrival !== '' ? (
                             <Container style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                               <div style={{ marginRight: '25px', width: '10px' }}>
                                 {service.NextBus.EstimatedArrival != null ?
-                                  CalculateBusArrivalTime(service.NextBus.EstimatedArrival) : "None"}
+                                  CalculateBusArrivalTime(service.NextBus2.EstimatedArrival) : "None"}
                               </div>
                               <div style={{ marginRight: '25px', width: '10px' }}>{DisplayBusType(service.NextBus.Type)}</div>
                               <div style={{ marginRight: '8px', width: '10px' }}>{DisplayBusLoad(service.NextBus.Load)}</div>
@@ -155,7 +162,6 @@ export default function BusTimings() {
                             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>-</div>
                           )}
                         </td>
-
                         <td>
                           {service.NextBus2.EstimatedArrival !== '' ? (
                             <Container style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
