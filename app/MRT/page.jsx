@@ -74,7 +74,7 @@ export default function App() {
                 </tbody>
               </Table>
             ) : (
-              <p></p>
+              <h1>Incorrect Input</h1>
             )}
           </div>
         )}
