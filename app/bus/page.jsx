@@ -11,8 +11,6 @@ import { Row } from 'react-bootstrap';
 import Stack from 'react-bootstrap/Stack';
 import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -147,8 +145,8 @@ export default function BusTimings() {
                                 {service.NextBus.EstimatedArrival != null ?
                                   CalculateBusArrivalTime(service.NextBus.EstimatedArrival) : "None"}
                               </div>
-                              <div style={{ marginRight: '25px', width: '10px'}}>{DisplayBusType(service.NextBus.Type)}</div>
-                              <div style={{ marginRight: '8px', width: '10px'}}>{DisplayBusLoad(service.NextBus.Load)}</div>
+                              <div style={{ marginRight: '25px', width: '10px' }}>{DisplayBusType(service.NextBus.Type)}</div>
+                              <div style={{ marginRight: '8px', width: '10px' }}>{DisplayBusLoad(service.NextBus.Load)}</div>
                               <div style={{ margin: '5px', width: '10px' }}>{DisplayBusAccessibility(service.NextBus.Feature)}</div>
                             </Container>
                           ) : (
@@ -163,8 +161,8 @@ export default function BusTimings() {
                                 {service.NextBus.EstimatedArrival != null ?
                                   CalculateBusArrivalTime(service.NextBus2.EstimatedArrival) : "None"}
                               </div>
-                              <div style={{ marginRight: '25px', width: '10px'}}>{DisplayBusType(service.NextBus2.Type)}</div>
-                              <div style={{ marginRight: '8px', width: '10px'}}>{DisplayBusLoad(service.NextBus2.Load)}</div>
+                              <div style={{ marginRight: '25px', width: '10px' }}>{DisplayBusType(service.NextBus2.Type)}</div>
+                              <div style={{ marginRight: '8px', width: '10px' }}>{DisplayBusLoad(service.NextBus2.Load)}</div>
                               <div style={{ margin: '5px', width: '10px' }}>{DisplayBusAccessibility(service.NextBus2.Feature)}</div>
                             </Container>
                           ) : (
