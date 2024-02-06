@@ -2,17 +2,16 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import Dropdown from 'react-bootstrap/Dropdown';
-import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 
 export default function About() {
   return (
     <div>
       <div>
-        <div className="image-container" style={{ display: 'flex', maxWidth: '100%', overflowX: 'auto' }}>
-          <Image src="/bus.webp" width={1000} height={300} objectFit="cover" />
-          <Image src="/mrt.jpg" width={1000} height={300} />
-        </div>
+        <Container style={{ display: 'flex', maxWidth: '100%', overflowX: 'auto' }}>
+          <Image src="/cycling.png" width={1000} height={320} />
+          <Image src="/mrt.jpg" width={1000} height={320} />
+        </Container>
         <h1 className={styles.header}>Singapore's Transportation Scene</h1>
       </div>
 
@@ -24,7 +23,7 @@ export default function About() {
           </Dropdown.Toggle>
 
           <Dropdown.Menu style={{ width: '1200px', padding: '12px' }}>
-            <p className={styles.text}>
+            <p style={{ margin: '20px'}}>
               The vision for a rail system started as early as 1967, just two years after independence,
               but only picked up steam in the late 1970s. <br />
               <br />
