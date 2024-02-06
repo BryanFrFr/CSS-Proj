@@ -96,15 +96,17 @@ export default function BusTimings() {
       {isButtonClicked && (
         <>
           {isLoading ? (
-            <Spinner animation="border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </Spinner>
+            <div style={{ display: 'flex', justifyContent: 'center'}}>
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            </div>
           ) : error ? (
             <h1>Error loading bus arrival data: {error.message}</h1>
           ) : (data.Services !== undefined && data.BusStopCode.length === 5 && data.Services.length > 0) ? (
             console.log(data),
             <div>
-              <Row>
+              <Row style={{ marginTop: '50px'}}>
                 <Col className="d-flex justify-content-center">
                   <Image src="/wheelchair.svg" alt="Wheelchair Icon" width={25} height={20} />
                 </Col>
