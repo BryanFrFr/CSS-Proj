@@ -22,8 +22,7 @@ export default function App() {
 
   const { data, isLoading, error } = useSWR(isButtonClicked ? `/MRT/api?MRTLine=${MRTLine}` : null,
     fetcher,);
-  
-
+    
     return (
       <div>
         <Form.Control
@@ -40,7 +39,7 @@ export default function App() {
           <div>
             {isLoading ? (
               <h1>Loading...</h1>
-            ) : (data.value.length > 0)? (
+            ) : (data.value !== undefined)? (
               <Table style={tableStyle}>
                 <thead>
                   <tr>
