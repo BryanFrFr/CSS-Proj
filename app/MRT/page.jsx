@@ -39,7 +39,7 @@ export default function App() {
           <div>
             {isLoading ? (
               <h1>Loading...</h1>
-            ) : (data.value !== undefined)? (
+            ) : (data.value.length > 0)? (
               <Table style={tableStyle}>
                 <thead>
                   <tr>
