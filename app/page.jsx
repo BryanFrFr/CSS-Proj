@@ -64,7 +64,7 @@ export default function About() {
               These are some of the key milestones in the development of our road network and the various measures we
               implemented over the years to manage road usage:
               <br />
-              <Image src="/evolution road networks.jpg" height={2920} width={1000} className={styles.image} />
+              <Image src="/mrt timeline.jpg" height={2920} width={1000} className={styles.image} />
             </Accordion.Body>
           </Accordion.Item>
 

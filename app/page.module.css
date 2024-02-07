@@ -12,13 +12,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  /* Adjust text color for visibility against the background */
   background-color: rgba(0, 0, 0, 0.4);
-  /* Adjust the background color and opacity */
   padding: 10px;
   text-align: center;
-  z-index: 1;
-  /* Ensure text is above the background image */
+  z-index: 1;     /* Ensure text is above the background image */
 }
 
 .container {
@@ -45,6 +42,7 @@
 
 .text {
   width: 1200px;
+  margin-top: 15px;
   padding-left: 30px;
   padding-right: 30px;
   padding-top: 15px;
