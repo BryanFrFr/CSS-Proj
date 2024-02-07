@@ -1,4 +1,5 @@
-// use vanilla fetch as fetcher
+// Done by: See Wai Kee, Audrey
+
 // deserialize the fetched data as json
 export async function GET(request) {
   const { searchParams } = new URL(request.url)
