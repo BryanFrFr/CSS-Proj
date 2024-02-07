@@ -1,3 +1,5 @@
+/* Done by: See Wai Kee, Audrey */
+
 .header {
   display: flex;
   max-width: 100%;
@@ -29,10 +31,10 @@
   width: 1200px;
 }
 
-.accheader {
+.accordionheader {
+  display: flex;
+  align-items: center;
   width: 1200px;
-  padding: 10px;
-  font-size: 18px;
 }
 
 .image {

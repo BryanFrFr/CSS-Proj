@@ -1,3 +1,5 @@
+// Done by: See Wai Kee, Audrey
+
 "use client";
 import Image from 'next/image';
 import styles from './page.module.css';
@@ -18,7 +20,39 @@ export default function About() {
       <Container className={styles.container}>
         <Accordion className={styles.accordion}>
           <Accordion.Item eventKey="0">
-            <Accordion.Header className={styles.accheader}>Our Rail System</Accordion.Header>
+            <Accordion.Header className={styles.accordionheader}>Taking Buses Into the Modern Age</Accordion.Header>
+            <Accordion.Body className={styles.text}>
+              In 1970, based on a White Paper recommendation, 10 Chinese bus companies were consolidated into three
+              which then merged in 1973 to form the Singapore Bus Service (SBS). <br />
+              <br />
+              In 1974, Government intervention led to the regulation and improvement of services, streamlining of bus
+              routes, training for staff, repairing bus fleets and implementing policies to raise overall standards. <br />
+              <br />
+              The Bus Lane Scheme for peak hours was implemented in 1974 and enhanced over the years. In 1975, the
+              City Shuttle Service Company began to serve commuters working in the Central Business District. <br />
+              <br />
+              To develop a more competitive and diverse bus industry, a second bus operating license was issued to
+              Trans-Island Bus Services (TIBS) in 1982. <br />
+              <br />
+              In 1987, the SBS, SMRT and TIBS jointly set up TransitLink to develop a common fare platform. It would later
+              become a subsidiary of LTA to manage concession schemes. <br />
+              <br />
+              Over the next few decades, buses evolved with improvements to capacity, comfort and accessibility. In 2006,
+              nine wheelchair-accessible buses (WABs) were introduced. All buses will be wheelchair accessible by 2020. <br />
+              <br />
+              LTA introduced the Bus Service Enhancement Programme (BSEP) in 2012 and the Bus Contracting Model (BCM) in
+              2016 to enhance connectivity and improve bus service levels. These LTA bus regulations serve to encourage
+              competition, raise service standards and make public bus operators more responsive to changes in ridership
+              and commuter needs. <br />
+              <br />
+              In tandem with the transition to BCM, a nation-wide vote was held to decide on new bus livery. The winner,
+              Lush Green, edged out Bright Red by 114 votes, and is now used for all government-owned Singapore buses. <br />
+              <br />
+            </Accordion.Body>
+          </Accordion.Item>
+
+          <Accordion.Item eventKey="1">
+            <Accordion.Header className={styles.accordionheader}>Our Rail System</Accordion.Header>
             <Accordion.Body className={styles.text}>
               Developing and regulating Singapore’s land transport network is a balance between improving road capacity
               and maintaining a sustainable vehicle population while managing traffic flow. Development of bus and rail
@@ -34,8 +68,8 @@ export default function About() {
             </Accordion.Body>
           </Accordion.Item>
 
-          <Accordion.Item eventKey="1">
-            <Accordion.Header className={styles.accheader}>Developing Roads and Managing Traffic</Accordion.Header>
+          <Accordion.Item eventKey="2">
+            <Accordion.Header className={styles.accordionheader}>Developing Roads and Managing Traffic</Accordion.Header>
             <Accordion.Body className={styles.text}>
               Developing and regulating Singapore’s land transport network is a balance between improving road capacity
               and maintaining a sustainable vehicle population while managing traffic flow. Development of bus and rail
@@ -50,8 +84,8 @@ export default function About() {
             </Accordion.Body>
           </Accordion.Item>
 
-          <Accordion.Item eventKey="2">
-            <Accordion.Header className={styles.accheader}>An Intergrated Public Transport System</Accordion.Header>
+          <Accordion.Item eventKey="3">
+            <Accordion.Header className={styles.accordionheader}>An Intergrated Public Transport System</Accordion.Header>
             <Accordion.Body className={styles.text}>
               With the rail system bringing added connectivity to the bus and road network in the 1980s, Singapore’s
               public transport system moved towards a more integrated model.  <br />

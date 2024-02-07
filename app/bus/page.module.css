@@ -1,3 +1,35 @@
+/* Done by: See Wai Kee, Audrey */
+
+.sea {
+    background-color: #008000;
+    height: 10px;
+    width: 10px;
+    border-radius: 50px;
+}
+
+.sda {
+    background-color: #f6c226;
+    height: 10px;
+    width: 10px;
+    border-radius: 50px;
+}
+
+.lsd {
+    background-color: #ff0000;
+    height: 10px;
+    width: 10px;
+    border-radius: 50px;
+}
+
+.stack {
+    margin-top: 20px;
+}
+
+.centralise {
+    display: flex;
+    justify-content: center;
+}
+
 .input {
     margin-top: 30px;
     padding: 10px;
@@ -11,4 +43,42 @@
     margin-bottom: 30px;
     width: 250px;
     height: 42px;
+}
+
+.legend {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    padding: 2px;
+}
+
+.text {
+    text-align: center;
+}
+
+.table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+}
+
+.timing {
+    margin-right: 25px;
+    width: 10px;
+}
+
+.type {
+    margin-right: 30px;
+    width: 10px;
+}
+
+.load {
+    margin-right: 15px;
+    width: 10px;
+}
+
+.accessiblity {
+    margin-left: 30px;
+    width: 10px;
 }
