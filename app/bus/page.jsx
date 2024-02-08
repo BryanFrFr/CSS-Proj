@@ -89,6 +89,33 @@ export default function BusTimings() {
     }
   }
 
+  function DisplayIcons() {
+    return (
+      <>
+        <Row className={styles.legend}>
+          <Col className={styles.centralise}>
+            <Image src="/wheelchair.svg" alt="Wheelchair Icon" width={25} height={20} />
+          </Col>
+          <Col className={styles.centralise}>
+            <div className={styles.sea}></div>
+          </Col>
+          <Col className={styles.centralise}>
+            <div className={styles.sda}></div>
+          </Col>
+          <Col className={styles.centralise}>
+            <div className={styles.lsd}></div>
+          </Col>
+        </Row>
+        <Row style={{ marginBottom: '20px' }}>
+          <Col className={styles.centralise}>Wheelchair Accessible</Col>
+          <Col className={styles.centralise}>Seats Available</Col>
+          <Col className={styles.centralise}>Standing Available</Col>
+          <Col className={styles.centralise}>Limited Standing</Col>
+        </Row>
+      </>
+    )
+  }
+
   function DisplayBusTimings({ estimatedArrival, busType, busLoad, busAccessibility }) {
     return (
       <>
@@ -102,7 +129,7 @@ export default function BusTimings() {
             <div className={styles.accessibility}>{getBusAccessibility(busAccessibility)}</div>
           </Container>
         ) : (
-          <div className={styles.table}>-</div>
+          <Container className={styles.table}>-</Container>
         )}
       </>
     );
@@ -139,27 +166,7 @@ export default function BusTimings() {
             </div>
           ) : (data.Services !== undefined && data.BusStopCode.length === 5 && data.Services.length > 0) ? (
             <div>
-              {/* Display legend of icons used */}
-              <Row className={styles.legend}>
-                <Col className={styles.centralise}>
-                  <Image src="/wheelchair.svg" alt="Wheelchair Icon" width={25} height={20} />
-                </Col>
-                <Col className={styles.centralise}>
-                  <div className={styles.sea}></div>
-                </Col>
-                <Col className={styles.centralise}>
-                  <div className={styles.sda}></div>
-                </Col>
-                <Col className={styles.centralise}>
-                  <div className={styles.lsd}></div>
-                </Col>
-              </Row>
-              <Row style={{ marginBottom: '20px' }}>
-                <Col className={styles.centralise}>Wheelchair Accessible</Col>
-                <Col className={styles.centralise}>Seats Available</Col>
-                <Col className={styles.centralise}>Standing Available</Col>
-                <Col className={styles.centralise}>Limited Standing</Col>
-              </Row>
+              <DisplayIcons />
               <Table bordered>
                 <thead>
                   <tr className={styles.text}>
