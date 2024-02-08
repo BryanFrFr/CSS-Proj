@@ -25,8 +25,7 @@ export default function App() {
 
   const { data, isLoading, error } = useSWR(isButtonClicked ? `/MRT/api?MRTLine=${MRTLine}` : null,
     fetcher,);
-  
-
+    
     return (
       <div>
         <Stack gap={4} style={{ marginTop: "20px" }}>

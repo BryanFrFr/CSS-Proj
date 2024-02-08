@@ -1,5 +1,7 @@
+// Done by: See Wai Kee, Audrey
+
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -22,23 +24,24 @@ export default function BusTimings() {
     isButtonClicked ? `/bus/api?busStopCode=${busStopCode}` : null,
     fetcher,
     {
-      refreshInterval: 60000,
-      revalidateIfStale: true,
+      refreshInterval: 60000,   // refresh the data every minute  
+      revalidateOnFocus: true,  // revalidates data when a page is re-focused or switched between tabs
     }
   );
 
   function handleButtonClick() {
-    setIsButtonClicked(prev => !prev)
+    // Update isButtonClick to true when users clicks on the button
+    setIsButtonClicked(true);
   };
 
-  function CalculateBusArrivalTime(arrivalTime) {
+  function calculateBusArrivalTime(arrivalTime) {
     const currentTime = new Date();
     const timeToBusArrival = new Date(arrivalTime) - currentTime;
     const arrivalTimeInMinutes = Math.floor(timeToBusArrival / 60000);
     return arrivalTimeInMinutes <= 0 ? 'Arr' : arrivalTimeInMinutes;
   }
 
-  function DisplayBusType(BusType) {
+  function getBusType(BusType) {
     if (BusType === 'DD') {
       return (
         <Image src="/double decker.svg" alt="Double Decker Bus Icon" width={20} height={25} />
@@ -50,43 +53,74 @@ export default function BusTimings() {
     }
   }
 
-  function DisplayBusLoad(BusLoad) {
-    if (BusLoad === 'SEA') {
+  function getBusLoad(BusLoad) {
+    if (BusLoad === 'SEA') {    // 'SEA' stands for 'Seats Available'
       return (
-        <div style={{ backgroundColor: '#008000', height: '10px', width: '10px', borderRadius: '50px' }}></div>
+        <div className={styles.sea}></div>
       );
-    } else if (BusLoad === 'SDA') {
+    } else if (BusLoad === 'SDA') {     // 'SDA' stands for 'Standing Available'
       return (
-        <div style={{ backgroundColor: '#f6c226', height: '10px', width: '10px', borderRadius: '50px' }}></div>
+        <div className={styles.sda}></div>
       );
-    } else {
+    } else {     // no seats are available and only limited standing space, i.e. Limited Standing (lsd)
       return (
-        <div style={{ backgroundColor: '#ff0000', height: '10px', width: '10px', borderRadius: '50px' }}></div>
+        <div className={styles.lsd}></div>
       )
     }
   }
 
-  function DisplayBusAccessibility(BusFeature) {
-    if (BusFeature === 'WAB') {
+  function getBusAccessibility(BusFeature) {
+    if (BusFeature === 'WAB') {    // 'WAB' equals to 'Wheelchair accessible'
       return (
         <Image src="/wheelchair.svg" alt="Wheelchair Icon" width={25} height={20} />
       )
     }
   }
 
+  function handleBusInput(event) {
+    // Update busStopCode state with the value entered by the user
+    setBusStopCode(event.target.value);
+
+    // Sets isButtonClick to false everytime the user clickes on the 'Get Bus Timings' buttom but the bus stop code entered 
+    // is not 5 digits long or when the data has loaded and the user changes the input for the bus stop code. 
+    // Prevents multiple fetches from the API
+    if (busStopCode.length !== 5) {
+      setIsButtonClicked(false);
+    }
+  }
+
+  function DisplayBusTimings({ estimatedArrival, busType, busLoad, busAccessibility }) {
+    return (
+      <>
+        {estimatedArrival !== '' ? (
+          <Container className={styles.table}>
+            <div className={styles.timing}>{estimatedArrival != null ?
+              calculateBusArrivalTime(estimatedArrival) : "None"}
+            </div>
+            <div className={styles.type}>{getBusType(busType)}</div>
+            <div className={styles.load}>{getBusLoad(busLoad)}</div>
+            <div className={styles.accessibility}>{getBusAccessibility(busAccessibility)}</div>
+          </Container>
+        ) : (
+          <div className={styles.table}>-</div>
+        )}
+      </>
+    );
+  }
+
   return (
     <div>
-      <Stack gap={4} style={{ marginTop: "20px" }}>
-        <Row className="d-flex justify-content-center">
+      <Stack gap={4} className={styles.stack}>
+        <Row className={styles.centralise}>
           <Form.Control
             className={styles.input}
             type="text"
             placeholder="Enter Bus Stop Code"
             value={busStopCode}
-            onChange={(event) => setBusStopCode(event.target.value)}
+            onChange={handleBusInput}
           />
         </Row>
-        <Row className="d-flex justify-content-center">
+        <Row className={styles.centralise}>
           <Button className={styles.button} variant="outline-secondary" onClick={handleButtonClick}>
             Get Bus Timings
           </Button>
@@ -95,40 +129,40 @@ export default function BusTimings() {
 
       {isButtonClicked && (
         <>
-          {isLoading ? (
-            <div style={{ display: 'flex', justifyContent: 'center'}}>
+          {error ? (
+            <h1>Error loading bus arrival data: {error.message}</h1>
+          ) : isLoading ? (
+            <div className={styles.centralise}>
               <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
               </Spinner>
             </div>
-          ) : error ? (
-            <h1>Error loading bus arrival data: {error.message}</h1>
           ) : (data.Services !== undefined && data.BusStopCode.length === 5 && data.Services.length > 0) ? (
-            console.log(data),
             <div>
-              <Row style={{ marginTop: '50px'}}>
-                <Col className="d-flex justify-content-center">
+              {/* Display legend of icons used */}
+              <Row className={styles.legend}>
+                <Col className={styles.centralise}>
                   <Image src="/wheelchair.svg" alt="Wheelchair Icon" width={25} height={20} />
                 </Col>
-                <Col className="d-flex justify-content-center">
-                  <div style={{ backgroundColor: '#008000', height: '10px', width: '10px', borderRadius: '50px' }}></div>
+                <Col className={styles.centralise}>
+                  <div className={styles.sea}></div>
                 </Col>
-                <Col className="d-flex justify-content-center">
-                  <div style={{ backgroundColor: '#f6c226', height: '10px', width: '10px', borderRadius: '50px' }}></div>
+                <Col className={styles.centralise}>
+                  <div className={styles.sda}></div>
                 </Col>
-                <Col className="d-flex justify-content-center">
-                  <div style={{ backgroundColor: '#ff0000', height: '10px', width: '10px', borderRadius: '50px' }}></div>
+                <Col className={styles.centralise}>
+                  <div className={styles.lsd}></div>
                 </Col>
               </Row>
               <Row style={{ marginBottom: '20px' }}>
-                <Col className="d-flex justify-content-center">Wheelchair Accessible</Col>
-                <Col className="d-flex justify-content-center">Seats Available</Col>
-                <Col className="d-flex justify-content-center">Standing Available</Col>
-                <Col className="d-flex justify-content-center">Limited Standing</Col>
+                <Col className={styles.centralise}>Wheelchair Accessible</Col>
+                <Col className={styles.centralise}>Seats Available</Col>
+                <Col className={styles.centralise}>Standing Available</Col>
+                <Col className={styles.centralise}>Limited Standing</Col>
               </Row>
               <Table bordered>
                 <thead>
-                  <tr style={{ textAlign: 'center' }}>
+                  <tr className={styles.text}>
                     <th>Service</th>
                     <th>Next Arrival</th>
                     <th>Subsequent Arrival</th>
@@ -138,38 +172,16 @@ export default function BusTimings() {
                   {data.Services.map((service) => (
                     <React.Fragment key={service.ServiceNo}>
                       <tr>
-                        <td style={{ textAlign: 'center' }}>{service.ServiceNo}</td>
-
                         <td>
-                          {service.NextBus.EstimatedArrival !== '' ? (
-                            <Container style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <div style={{ marginRight: '25px', width: '10px' }}>
-                                {service.NextBus.EstimatedArrival != null ?
-                                  CalculateBusArrivalTime(service.NextBus.EstimatedArrival) : "None"}
-                              </div>
-                              <div style={{ marginRight: '25px', width: '10px' }}>{DisplayBusType(service.NextBus.Type)}</div>
-                              <div style={{ marginRight: '8px', width: '10px' }}>{DisplayBusLoad(service.NextBus.Load)}</div>
-                              <div style={{ margin: '5px', width: '10px' }}>{DisplayBusAccessibility(service.NextBus.Feature)}</div>
-                            </Container>
-                          ) : (
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>-</div>
-                          )}
+                          <Container className={styles.table}>{service.ServiceNo}</Container>
                         </td>
-
                         <td>
-                          {service.NextBus2.EstimatedArrival !== '' ? (
-                            <Container style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                              <div style={{ marginRight: '25px', width: '10px' }}>
-                                {service.NextBus.EstimatedArrival != null ?
-                                  CalculateBusArrivalTime(service.NextBus2.EstimatedArrival) : "None"}
-                              </div>
-                              <div style={{ marginRight: '25px', width: '10px' }}>{DisplayBusType(service.NextBus2.Type)}</div>
-                              <div style={{ marginRight: '8px', width: '10px' }}>{DisplayBusLoad(service.NextBus2.Load)}</div>
-                              <div style={{ margin: '5px', width: '10px' }}>{DisplayBusAccessibility(service.NextBus2.Feature)}</div>
-                            </Container>
-                          ) : (
-                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>-</div>
-                          )}
+                          <DisplayBusTimings estimatedArrival={service.NextBus.EstimatedArrival} busType={service.NextBus.Type}
+                            busLoad={service.NextBus.Load} busAccessibility={service.NextBus.Feature} />
+                        </td>
+                        <td>
+                          <DisplayBusTimings estimatedArrival={service.NextBus2.EstimatedArrival} busType={service.NextBus2.Type}
+                            busLoad={service.NextBus2.Load} busAccessibility={service.NextBus2.Feature} />
                         </td>
                       </tr>
                     </React.Fragment>

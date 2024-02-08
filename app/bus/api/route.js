@@ -1,4 +1,5 @@
-// use vanilla fetch as fetcher
+// Done by: See Wai Kee, Audrey
+
 // deserialize the fetched data as json
 export async function GET(request) {
   const { searchParams } = new URL(request.url)
@@ -9,7 +10,7 @@ export async function GET(request) {
       'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
       'Pragma': 'no-cache',
       'Content-Type': 'application/json',
-      'AccountKey': '9LaRUMo3T7uWgUnDUFfJSw==',
+      'AccountKey': process.env.LTA_DATAMALL_API_KEY_BUS,
     },
   });
 
