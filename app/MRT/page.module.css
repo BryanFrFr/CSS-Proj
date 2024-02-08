@@ -1,0 +1,18 @@
+/* Done by: Ayden See */
+
+.input {
+    margin-top: 30px;
+    padding: 10px;
+    width: 400px;
+    text-align: center;
+    background-color: lightblue;
+    border: 1px solid #bbb;
+}
+
+.button {
+    text-align: center;
+    background-color:lightblue;
+    margin-bottom: 30px;
+    width: 250px;
+    height: 42px;
+}
