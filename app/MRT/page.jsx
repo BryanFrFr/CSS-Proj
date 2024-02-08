@@ -4,6 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
+import styles from './page.module.css';
+import Stack from 'react-bootstrap/Stack';
+import { Row } from 'react-bootstrap';
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 
@@ -25,15 +28,22 @@ export default function App() {
     
     return (
       <div>
-        <Form.Control
-          type="text"
-          placeholder="Enter MRT line"
-          value={MRTLine}
-          onChange={(event) => setMRTLine(event.target.value)}
-        />
-        <Button variant="outline-secondary" onClick={handleButtonClick}>
-          Get MRT Crowd
-        </Button>
+        <Stack gap={4} style={{ marginTop: "20px" }}>
+          <Row className="d-flex justify-content-center">
+            <Form.Control
+              className={styles.input}
+              type="text"
+              placeholder="Enter MRT line [DTL/NSL/EWL/CCL/NEL/BPL]"
+              value={MRTLine}
+              onChange={(event) => setMRTLine(event.target.value)}
+            />
+          </Row>          
+          <Row className="d-flex justify-content-center">
+            <Button className={styles.button} variant="outline-secondary" onClick={handleButtonClick}>
+              Get MRT Crowd
+            </Button>
+          </Row>
+        </Stack>
         {isButtonClicked && (
           console.log(data),
           <div>
@@ -63,11 +73,10 @@ export default function App() {
                 </tbody>
               </Table>
             ) : (
-              <p></p>
+              <h1>Incorrect Input</h1>
             )}
           </div>
         )}
       </div>
     );
 }
-
