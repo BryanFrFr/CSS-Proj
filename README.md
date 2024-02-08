@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Note
+
+If the API key used to fetch data in my-app/MRT/api/route.js does not work, please refer to .env.local for the alternative keys. If both alternative keys and the original key cannot be used to fetch data from LTA Datamall, please user your own API key provided by LTA Datamall.
+
 ## Getting Started
 
 First, run the development server:
