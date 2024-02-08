@@ -50,6 +50,10 @@ export default function BusTimings() {
       return (
         <Image src="/single decker.svg" alt="Single Decker Bus Icon" width={20} height={20} />
       );
+    } else {
+      return (
+        <div>AB</div>
+      )
     }
   }
 
@@ -89,9 +93,9 @@ export default function BusTimings() {
     }
   }
 
-  function DisplayIcons() {
+  function DisplayLegend() {
     return (
-      <>
+      <Container>
         <Row className={styles.legend}>
           <Col className={styles.centralise}>
             <Image src="/wheelchair.svg" alt="Wheelchair Icon" width={25} height={20} />
@@ -105,14 +109,16 @@ export default function BusTimings() {
           <Col className={styles.centralise}>
             <div className={styles.lsd}></div>
           </Col>
+          <Col className={styles.centralise}>AB</Col>
         </Row>
-        <Row style={{ marginBottom: '20px' }}>
+        <Row className={styles.space}>
           <Col className={styles.centralise}>Wheelchair Accessible</Col>
           <Col className={styles.centralise}>Seats Available</Col>
           <Col className={styles.centralise}>Standing Available</Col>
           <Col className={styles.centralise}>Limited Standing</Col>
+          <Col className={styles.centralise}>Articulated Bus</Col>
         </Row>
-      </>
+      </Container>
     )
   }
 
@@ -155,6 +161,7 @@ export default function BusTimings() {
       </Stack>
 
       {isButtonClicked && (
+        console.log(data),
         <>
           {error ? (
             <h1>Error loading bus arrival data: {error.message}</h1>
@@ -166,7 +173,7 @@ export default function BusTimings() {
             </div>
           ) : (data.Services !== undefined && data.BusStopCode.length === 5 && data.Services.length > 0) ? (
             <div>
-              <DisplayIcons />
+              <DisplayLegend />
               <Table bordered>
                 <thead>
                   <tr className={styles.text}>

@@ -52,6 +52,10 @@
     padding: 2px;
 }
 
+.space {
+    margin-bottom: 20px;
+}
+
 .text {
     text-align: center;
 }
@@ -64,7 +68,7 @@
 }
 
 .timing {
-    margin-right: 25px;
+    margin-right: 30px;
     width: 10px;
 }
 
