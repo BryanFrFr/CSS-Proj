@@ -1,7 +1,7 @@
 // Done by: See Wai Kee, Audrey
 
-// deserialize the fetched data as json
 export async function GET(request) {
+  // get the busStopCode parameter from the API call in page.jsx
   const { searchParams } = new URL(request.url)
   const busStopCode = searchParams.get('busStopCode');
 
@@ -14,7 +14,7 @@ export async function GET(request) {
     },
   });
 
-  const data = await res.json();
+  const data = await res.json();    // deserialize the fetched data as json
 
   return Response.json(data);
 }
