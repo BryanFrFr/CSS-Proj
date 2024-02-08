@@ -8,7 +8,7 @@ export async function GET(request) {
         //qKpobOWvRHywqHj9eT/UvQ== (Ayden 1st key)
         //9Kvtj7kzQdyOgqeR4K1Bfg== (Ayden 2nd key)
         //gnT3uIc4Q4G151/hKaMiAg== (Bryan key)
-        'AccountKey': '9Kvtj7kzQdyOgqeR4K1Bfg==',
+        'AccountKey': process.env.LTA_DATAMALL_API_KEY_MRT,
       },
     });
     const data = await res.json();
