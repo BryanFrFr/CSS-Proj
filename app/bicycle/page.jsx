@@ -7,17 +7,7 @@ import styles from './page.module.css';
 import Stack from 'react-bootstrap/Stack';
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function App() {
-  var tableStyle = {
-    "border": "1px solid black",
-    "textAlign": "center",
-    "padding": "10px",
-  };
-  var headerStyle = {
-    "border": "1px solid black",
-    "textAlign": "center",
-    "padding": "10px",
-    "background": "green"
-  };
+
   const [dist, setDist] = useState('')
   const [position, setPosition] = useState({ lat: 0, long: 0 });
   const click = () => {
@@ -59,21 +49,21 @@ export default function App() {
     return <div>loading...</div>
   }
   else {
-    console.log(data);
+    console.log(data);  
     return (
       <div>
         <Stack gap={4} style={{ marginTop: "20px" }}>
-        <input style = {{styles}} onChange = {change} value = {dist} class = 'input'/>
+        <input placeholder = "Enter Radius:" className = {styles.input} onChange = {change} value = {dist} class = 'input'/>
         <Button type = 'button' class = 'btn' onClick = {click}>Clear Table</Button>
-        <Table className="LeTable" style={tableStyle}>
-          <tr><th style={headerStyle}>Description</th><th style={headerStyle}>Shelter (Y/N)</th><th style={headerStyle}>Number of Racks</th><th style={headerStyle}>Type of Rack</th></tr>
+        <Table class = 'table'>
+          <tr><th className={styles.headerStyle}>Description</th><th className={styles.headerStyle}>Shelter (Y/N)</th><th className={styles.headerStyle}>Number of Racks</th><th className={styles.headerStyle}>Type of Rack</th></tr>
           {data.value.map((val, key) => {
             return (
-              <tr style={tableStyle} key={key}>
-                <td style={tableStyle}>{val.Description}</td>
-                <td style={tableStyle}>{val.ShelterIndicator}</td>
-                <td style={tableStyle}>{val.RackCount}</td>
-                <td style={tableStyle}>{val.RackType}</td>
+              <tr key={key}>
+                <td className ={styles.dataStyle}>{val.Description}</td>
+                <td className ={styles.dataStyle}>{val.ShelterIndicator}</td>
+                <td className ={styles.dataStyle}>{val.RackCount}</td>
+                <td className ={styles.dataStyle}>{val.RackType}</td>
               </tr>
             )
           })}
