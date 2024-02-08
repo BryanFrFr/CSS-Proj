@@ -47,7 +47,6 @@ export default function About() {
               <br />
               In tandem with the transition to BCM, a nation-wide vote was held to decide on new bus livery. The winner,
               Lush Green, edged out Bright Red by 114 votes, and is now used for all government-owned Singapore buses. <br />
-              <br />
             </Accordion.Body>
           </Accordion.Item>
 
