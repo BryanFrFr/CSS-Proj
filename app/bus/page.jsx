@@ -42,15 +42,15 @@ export default function BusTimings() {
   }
 
   function getBusType(BusType) {
-    if (BusType === 'DD') {
+    if (BusType === 'DD') {    // 'DD' stands for 'Double Decker (Bus)'
       return (
         <Image src="/double decker.svg" alt="Double Decker Bus Icon" width={20} height={25} />
       );
-    } else if (BusType === 'SD') {
+    } else if (BusType === 'SD') {    // 'SD' stands for 'Single Decker (Bus)'
       return (
         <Image src="/single decker.svg" alt="Single Decker Bus Icon" width={20} height={20} />
       );
-    } else {
+    } else {     // bus type is Articulated Bus (Bendy Bus)
       return (
         <div>AB</div>
       )

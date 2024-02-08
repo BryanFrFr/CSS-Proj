@@ -1,4 +1,5 @@
 // Done by: Audrey, Ayden and Bryan
+// creating and importing styles from Navbar.module.css did not seem to work hence inline CSS is used
 
 "use client";
 import Container from 'react-bootstrap/Container';
