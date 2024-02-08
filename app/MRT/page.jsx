@@ -11,7 +11,7 @@ import Stack from 'react-bootstrap/Stack';
 import { Row } from 'react-bootstrap';
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-
+//creating the table with the black borders around each variable
 export default function App() {
   var tableStyle = {
     "border": "1px solid black",
@@ -28,9 +28,12 @@ export default function App() {
   const { data, isLoading, error } = useSWR(isButtonClicked ? `/MRT/api?MRTLine=${MRTLine}` : null,
     fetcher,);
     
+    //create the input box for the user to enter the data
+    //create the button for the user to click to set the variable to obtain the data from datamall
+    //display all the information in a table form
     return (
       <div>
-        <Stack gap={4} style={{ marginTop: "20px" }}>
+        <Stack gap={4} style={{ marginTop: "20px" }}> 
           <Row className="d-flex justify-content-center">
             <Form.Control
               className={styles.input}
