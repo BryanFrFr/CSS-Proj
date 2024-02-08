@@ -49,11 +49,11 @@ export default function App() {
     return <div>loading...</div>
   }
   else {
-    console.log(data);
+    console.log(data);  
     return (
       <div>
         <Stack gap={4} style={{ marginTop: "20px" }}>
-        <input style = {{styles}} onChange = {change} value = {dist} class = 'input'/>
+        <input placeholder = "Enter Radius:" className = {styles.input} onChange = {change} value = {dist} class = 'input'/>
         <Button type = 'button' class = 'btn' onClick = {click}>Clear Table</Button>
         <Table class = 'table'>
           <tr><th className={styles.headerStyle}>Description</th><th className={styles.headerStyle}>Shelter (Y/N)</th><th className={styles.headerStyle}>Number of Racks</th><th className={styles.headerStyle}>Type of Rack</th></tr>
