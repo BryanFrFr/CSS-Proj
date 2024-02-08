@@ -4,6 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 If the API key used to fetch data in my-app/MRT/api/route.js does not work, please refer to .env.local for the alternative keys. If both alternative keys and the original key cannot be used to fetch data from LTA Datamall, please user your own API key provided by LTA Datamall.
 
+.env.local.example contains an example of the API keys used in each of the router handlers. They are not the actual keys and should not be used to fetch data from LTA Datamall. 
+
 ## Getting Started
 
 First, run the development server:
